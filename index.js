@@ -17,6 +17,10 @@ module.exports = (job, settings, options, type) => {
           }
 
           image.dest = newFileName;
+
+          settings.logger.log(
+            `changed ${image.layerName} file to ${newFileName}`
+          );
         }
       });
 
