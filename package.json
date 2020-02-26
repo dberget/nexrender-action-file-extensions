@@ -1,0 +1,15 @@
+{
+  "name": "nexrender-action-file-extensions",
+  "version": "1.0.0",
+  "description": "Make sure all image file have a image extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dberget",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
