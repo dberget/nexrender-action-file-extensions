@@ -10,13 +10,14 @@ module.exports = (job, settings, options, type) => {
       .filter(asset => asset.type === "image")
       .forEach(image => {
         if (path.extname(image.dest) === "") {
+          console.log(image.dest);
+
           let newFileName = `${image.dest}.${ext}`;
 
           console.log(newFileName);
+          fs.renameSync(image.dest, newFileName);
 
           image.dest = newFileName;
-
-          fs.renameSync(image.dest, newFileName);
         }
       });
     console.log(job.assets);
