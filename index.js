@@ -12,11 +12,11 @@ module.exports = (job, settings, options, type) => {
         if (path.extname(image.dest) === "") {
           let newFileName = `${asset.dest}.${ext}`;
           image.dest = newFileName;
-          fs.rename(asset.dest, newFileName);
-        }
 
-        console.log(job.assets);
+          fs.rename(image.dest, newFileName);
+        }
       });
+    console.log(job.assets);
 
     resolve(job);
   });
