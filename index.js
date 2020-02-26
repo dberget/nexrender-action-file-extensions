@@ -10,7 +10,7 @@ module.exports = (job, settings, options, type) => {
       .filter(asset => asset.type === "image")
       .forEach(image => {
         if (path.extname(image.dest) === "") {
-          let newFileName = `${asset.dest}.${ext}`;
+          let newFileName = `${image.dest}.${ext}`;
           image.dest = newFileName;
 
           fs.rename(image.dest, newFileName);
