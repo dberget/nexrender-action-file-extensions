@@ -35,11 +35,7 @@ async function getContentType(src) {
     method: "HEAD"
   };
 
-  let contentType = await fetch(src, options).then(res => {
-    return res.headers.get("content-type").match(regex);
+  return await fetch(src, options).then(res => {
+    return res.headers.get("content-type").split("/")[1];
   });
-
-  console.log(contentType);
-
-  return contentType;
 }
