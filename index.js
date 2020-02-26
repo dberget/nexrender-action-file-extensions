@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 module.exports = (job, settings, options, type) => {
-  let ext = (options && options.ext) || "png";
+  let ext = (options && options.ext) || "jpeg";
 
   return new Promise((resolve, reject) => {
     job.assets
