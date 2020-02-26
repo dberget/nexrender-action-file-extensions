@@ -30,12 +30,12 @@ module.exports = (job, settings, options, type) => {
 
 const regex = /([^\/]+$)/;
 
-function getContentType(src) {
+async function getContentType(src) {
   const options = {
     method: "HEAD"
   };
 
-  let contentType = fetch(src, options).then(res => {
+  let contentType = await fetch(src, options).then(res => {
     return res.headers.get("content-type").match(regex);
   });
 
