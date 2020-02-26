@@ -1,7 +1,7 @@
 const { name } = require("./package.json");
 const path = require("path");
 const fs = require("fs");
-var request = require("request");
+const fetch = require("node-fetch");
 
 module.exports = (job, settings, options, type) => {
   return new Promise((resolve, reject) => {
@@ -32,14 +32,14 @@ const regex = /([^\/]+$)/;
 
 function getContentType(src) {
   const options = {
-    method: "HEAD",
-    headers: headers,
-    url: src
+    method: "HEAD"
   };
 
-  let contentType = request(src, function(res) {
-    return res.headers["content-type"].match(regex);
+  let contentType = fetch(src, options).then(res => {
+    return res.headers.get("content-type").match(regex);
   });
+
+  console.log(contentType);
 
   return contentType;
 }
