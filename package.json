@@ -1,6 +1,6 @@
 {
   "name": "nexrender-action-file-extensions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Make sure all image file have a image extension",
   "main": "index.js",
   "scripts": {
