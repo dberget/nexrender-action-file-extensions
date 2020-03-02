@@ -35,14 +35,19 @@ module.exports = (job, settings, options, type) => {
           settings.logger.log("newFile: ", newFileName);
 
           if (fs.existsSync(image.dest)) {
-            fs.rename(image.dest, newFileName, () => {
-              settings.logger.log(`renamed file name - ${newFileName}`);
-            });
+            fs.renameSync(image.dest, newFileName);
+          } else {
+            settings.logger.log(
+              `${image.dest} file doesn't exist, can't rename.`
+            );
           }
 
           image.dest = newFileName;
+          settings.logger.log(`renamed file name - ${newFileName}`);
         }
       });
+
+    settings.logger.log(job.assets);
 
     resolve(job);
   });
