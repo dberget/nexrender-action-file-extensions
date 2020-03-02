@@ -29,10 +29,10 @@ module.exports = (job, settings, options, type) => {
           let ext = path.extname(image.dest);
           let dir = path.dirname(image.dest);
 
-          settings.logger.log("Ext: ", ext);
-          settings.logger.log("dir: ", dir);
-
           let newFileName = `${dir}\image_${i}${ext}`;
+
+          settings.logger.log("dest: ", image.dest);
+          settings.logger.log("newFile: ", newFileName);
 
           if (fs.existsSync(image.dest)) {
             fs.rename(image.dest, newFileName);
