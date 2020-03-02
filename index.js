@@ -29,7 +29,7 @@ module.exports = (job, settings, options, type) => {
           let ext = path.extname(image.dest);
           let dir = path.dirname(image.dest);
 
-          let newFileName = `${dir}\image_${i}${ext}`;
+          let newFileName = `${dir}\\image_${i}${ext}`;
 
           settings.logger.log("dest: ", image.dest);
           settings.logger.log("newFile: ", newFileName);
