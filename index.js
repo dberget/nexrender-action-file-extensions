@@ -10,6 +10,8 @@ module.exports = (job, settings, options, type) => {
       .forEach((image, i) => {
         if (path.extname(image.dest) === "") {
           getContentType(image.src).then(res => {
+            settings.logger.log(`getting content type`);
+
             let ext = res.split("/")[1];
             let newFileName = `${image.dest}-${i}.${ext}`;
 
@@ -34,9 +36,7 @@ module.exports = (job, settings, options, type) => {
 
           image.dest = newFileName;
 
-          settings.logger.log(
-            `changed ${image.layerName} file to ${newFileName}`
-          );
+          settings.logger.log(`added index to file name - ${newFileName}`);
         }
       });
 
