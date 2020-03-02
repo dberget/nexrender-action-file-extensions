@@ -26,9 +26,10 @@ module.exports = (job, settings, options, type) => {
             );
           });
         } else {
-          ext = path.extname(image.dest);
+          let ext = path.extname(image.dest);
+          let dir = path.dirname(image.dest);
 
-          let newFileName = `${image.dest}-${i}${ext}`;
+          let newFileName = `${dir}image_${i}${ext}`;
 
           if (fs.existsSync(image.dest)) {
             fs.renameSync(image.dest, newFileName);
@@ -36,7 +37,7 @@ module.exports = (job, settings, options, type) => {
 
           image.dest = newFileName;
 
-          settings.logger.log(`added index to file name - ${newFileName}`);
+          settings.logger.log(`renamed file name - ${newFileName}`);
         }
       });
 
