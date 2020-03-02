@@ -32,7 +32,7 @@ module.exports = (job, settings, options, type) => {
           settings.logger.log("Ext: ", ext);
           settings.logger.log("dir: ", dir);
 
-          let newFileName = `${dir}\\image_${i}${ext}`;
+          let newFileName = `${dir}\image_${i}${ext}`;
 
           if (fs.existsSync(image.dest)) {
             fs.renameSync(image.dest, newFileName);
