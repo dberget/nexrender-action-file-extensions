@@ -25,29 +25,8 @@ module.exports = (job, settings, options, type) => {
               `changed ${image.layerName} file to ${newFileName}`
             );
           });
-        } else {
-          let ext = path.extname(image.dest);
-          let dir = path.dirname(image.dest);
-
-          let newFileName = `${dir}\\image_${i}${ext}`;
-
-          settings.logger.log("dest: ", image.dest);
-          settings.logger.log("newFile: ", newFileName);
-
-          if (fs.existsSync(image.dest)) {
-            fs.renameSync(image.dest, newFileName);
-          } else {
-            settings.logger.log(
-              `${image.dest} file doesn't exist, can't rename.`
-            );
-          }
-
-          image.dest = newFileName;
-          settings.logger.log(`renamed file name - ${newFileName}`);
         }
       });
-
-    settings.logger.log(job.assets);
 
     resolve(job);
   });
