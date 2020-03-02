@@ -29,7 +29,7 @@ module.exports = (job, settings, options, type) => {
           let ext = path.extname(image.dest);
           let dir = path.dirname(image.dest);
 
-          let newFileName = `${dir}image_${i}${ext}`;
+          let newFileName = `${dir}/image_${i}${ext}`;
 
           if (fs.existsSync(image.dest)) {
             fs.renameSync(image.dest, newFileName);
