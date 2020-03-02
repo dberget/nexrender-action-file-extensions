@@ -35,9 +35,9 @@ module.exports = (job, settings, options, type) => {
           settings.logger.log("newFile: ", newFileName);
 
           if (fs.existsSync(image.dest)) {
-            fs.rename(image.dest, newFileName);
-
-            settings.logger.log(`renamed file name - ${newFileName}`);
+            fs.rename(image.dest, newFileName, () => {
+              settings.logger.log(`renamed file name - ${newFileName}`);
+            });
           }
 
           image.dest = newFileName;
