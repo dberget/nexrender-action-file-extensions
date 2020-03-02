@@ -9,18 +9,20 @@ module.exports = (job, settings, options, type) => {
       .filter(asset => asset.type === "image")
       .forEach(image => {
         if (path.extname(image.dest) === "") {
-          let ext = getContentType(image.src);
-          let newFileName = `${image.dest}.${ext}`;
+          getContentType(image.src).then(res => {
+            let ext = res.split("/")[1];
+            let newFileName = `${image.dest}.${ext}`;
 
-          if (fs.existsSync(image.dest)) {
-            fs.renameSync(image.dest, newFileName);
-          }
+            if (fs.existsSync(image.dest)) {
+              fs.renameSync(image.dest, newFileName);
+            }
 
-          image.dest = newFileName;
+            image.dest = newFileName;
 
-          settings.logger.log(
-            `changed ${image.layerName} file to ${newFileName}`
-          );
+            settings.logger.log(
+              `changed ${image.layerName} file to ${newFileName}`
+            );
+          });
         }
       });
 
@@ -28,14 +30,12 @@ module.exports = (job, settings, options, type) => {
   });
 };
 
-const regex = /([^\/]+$)/;
-
 async function getContentType(src) {
   const options = {
     method: "HEAD"
   };
 
   return await fetch(src, options).then(res => {
-    return res.headers.get("content-type").split("/")[1];
+    return res.headers.get("content-type");
   });
 }
