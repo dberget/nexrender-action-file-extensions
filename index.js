@@ -35,7 +35,8 @@ module.exports = (job, settings, options, type) => {
           let newFileName = `${dir}\image_${i}${ext}`;
 
           if (fs.existsSync(image.dest)) {
-            fs.renameSync(image.dest, newFileName);
+            fs.rename(image.dest, newFileName);
+
             settings.logger.log(`renamed file name - ${newFileName}`);
           }
 
